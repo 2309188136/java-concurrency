@@ -27,7 +27,10 @@ public class JDKCountDown {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    latch.countDown();
+                    finally{
+                        latch.countDown();
+                    }
+//                    latch.countDown();
                 }, String.valueOf(i)).start()
         );
 

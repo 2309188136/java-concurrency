@@ -18,6 +18,13 @@ public class FutureService {
         return asynFuture;
     }
 
+    /**
+     *
+     * @param task
+     * @param consumer act like callback
+     * @param <T>
+     * @return
+     */
     public <T> Future<T> submit(final FutureTask<T> task, final Consumer<T> consumer) {
         AsynFuture<T> asynFuture = new AsynFuture<>();
         new Thread(() -> {

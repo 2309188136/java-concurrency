@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <build>
+        <finalName>java-concurrency-wangwenjun</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -21,7 +21,7 @@ public class AppServer extends Thread {
 
     private volatile boolean start = true;
 
-    private List<ClientHandler> clientHandlers = new ArrayList<>();
+    private List<RequestHandler> requestHandlers = new ArrayList<>();
 
     private final ExecutorService executor = Executors.newFixedThreadPool(10);
 
@@ -40,10 +40,11 @@ public class AppServer extends Thread {
         try {
             this.server = new ServerSocket(port);
             while (start) {
-                Socket client = server.accept();
-                ClientHandler clientHandler = new ClientHandler(client);
-                executor.submit(clientHandler);
-                this.clientHandlers.add(clientHandler);
+                Socket requestSocket = server.accept();
+
+                RequestHandler requestHandler = new RequestHandler(requestSocket);
+                executor.submit(requestHandler);
+                this.requestHandlers.add(requestHandler);
             }
         } catch (IOException e) {
 //            throw new RuntimeException(e);
@@ -54,7 +55,7 @@ public class AppServer extends Thread {
 
     private void dispose() {
         System.out.println("dispose");
-        this.clientHandlers.stream().forEach(ClientHandler::stop);
+        this.requestHandlers.stream().forEach(RequestHandler::stop);
         this.executor.shutdown();
     }
 

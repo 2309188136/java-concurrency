@@ -21,19 +21,19 @@ public class BalkingData {
         this.content = content;
         this.changed = true;
     }
-
+    //主动诉求变化
     public synchronized void change(String newContent) {
         this.content = newContent;
         this.changed = true;
     }
-
+    //轮值巡视
     public synchronized void save() throws IOException {
         if (!changed) {
             return;
         }
 
         doSave();
-        this.changed = false;
+        this.changed = false; //受理了
     }
 
     private void doSave() throws IOException {
