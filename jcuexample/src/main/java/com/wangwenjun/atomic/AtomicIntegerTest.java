@@ -15,6 +15,7 @@ public class AtomicIntegerTest {
             @Override
             public void run() {
                 for (int i = 0; i < 1000; i++) {
+                    //int v = atomicInteger.getAndIncrement();
                     int v = atomicInteger.incrementAndGet();
                     System.out.println("Thread:" + currentThread().getName() + "," + v);
                 }
@@ -26,6 +27,7 @@ public class AtomicIntegerTest {
             public void run() {
                 for (int i = 0; i < 1000; i++) {
                     int v = atomicInteger.incrementAndGet();
+//                    int v = atomicInteger.getAndIncrement();
                     System.out.println("Thread:" + currentThread().getName() + "," + v);
                 }
             }
@@ -35,5 +37,6 @@ public class AtomicIntegerTest {
         t1.join();
 
         t2.join();
+        Thread.sleep(10000L);
     }
 }

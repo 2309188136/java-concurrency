@@ -12,7 +12,7 @@ public class AtomicCompareTest {
     public static void main(String[] args) throws InterruptedException {
         AtomicInteger atomicInteger = new AtomicInteger(123);
 //
-//        atomicInteger.compareAndSet(124, 2352);
+        atomicInteger.compareAndSet(124, 2352);
 //        System.out.println(atomicInteger.get());
 //        Thread.currentThread().join();
 
